@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-        <title>Messenger</title>
-	</head>
-	<body>
-		<!--	WEBSITE BODY	-->
-	</body>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <title>Messenger</title></head>
+<body>
+<h1 class="centeredHeader"> Messenger</h1>
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#messageFormTab">Send Message</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#registerFormTab">Register User</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#checkInboxTab">Check Inbox</a></li>
+</ul>
+<div class="tab-content">
+    <div id="messageFormTab" class="tab-pane fade show active">
+        <h2 class="centeredHeader">Send Message</h2>
+        <form id="messageForm"><h3>Target User:</h3> <input type="text" id="username" name="username" required>
+            <h3>Message:</h3> <input type="text" id="message" name="message" required> <br><br>
+            <button type="submit" onclick="register()">Send</button>
+        </form>
+    </div>
+    <div id="registerFormTab" class="tab-pane fade">
+        <h2 class="centeredHeader">Register User</h2>
+        <form id="registerForm"><h3>Username:</h3> <input type="text" id="registerUsername" name="registerUsername"
+                                                          required>
+            <h3>Password:</h3> <input type="password" id="registerPassword" name="registerPassword" required> <br><br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div id="checkInboxTab" class="tab-pane fade">
+        <h2 class="centeredHeader">Check Your Inbox</h2>
+        <form id="inboxForm">
+            <h3>Username:</h3> <input type="text" id="inboxUsername" name="inboxUsername"
+                                      required>
+            <h3>Password:</h3> <input type="password" id="inboxPassword" name="inboxPassword" required> <br><br>
+            <button id="checkInbox">Check Inbox</button>
+        </form>
+
+    </div>
+</div>
+</body>
 </html>
