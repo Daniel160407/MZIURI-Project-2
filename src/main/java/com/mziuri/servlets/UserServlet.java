@@ -1,18 +1,17 @@
 package com.mziuri.servlets;
 
-import com.mziuri.JDBC.JDBCController;
+import com.mziuri.JDBC.MySQLController;
 import com.mziuri.user.User;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
-    JDBCController jdbcController = new JDBCController();
+    MySQLController jdbcController = new MySQLController();
 
     public UserServlet() {
     }
@@ -27,7 +26,7 @@ public class UserServlet extends HttpServlet {
 
         for (User user : users) {
             System.out.println(user);
-            if (user == null || user.getUsername().equals(username)) {
+            if (user == null || user.username().equals(username)) {
                 passed = false;
                 break;
             }

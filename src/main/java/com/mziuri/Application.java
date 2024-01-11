@@ -1,6 +1,6 @@
 package com.mziuri;
 
-import com.mziuri.JDBC.JDBCController;
+import com.mziuri.JDBC.MySQLController;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class Application {
 
-    public static void main(String[] args) throws LifecycleException, SQLException {
+    public static void main(String[] args) throws LifecycleException {
 
         Tomcat tomcat = new Tomcat();
 
@@ -32,9 +32,9 @@ public class Application {
         resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes", additionWebInfClasses.getAbsolutePath(), "/"));
         ctx.setResources(resources);
 
-        JDBCController jdbcController = new JDBCController();
+        MySQLController jdbcController = new MySQLController();
         jdbcController.createSchema();
-        jdbcController.createTable();
+        jdbcController.createTables();
 
         tomcat.start();
         tomcat.getServer().await();

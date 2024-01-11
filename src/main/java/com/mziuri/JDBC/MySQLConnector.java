@@ -1,4 +1,4 @@
-package com.mziuri.MySQLConnector;
+package com.mziuri.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,9 +1,9 @@
 package com.mziuri.message;
 
 public class MessageValidator {
-    private MessageValidator instance;
+    private static MessageValidator instance;
 
-    public synchronized MessageValidator getInstance() {
+    public static synchronized MessageValidator getInstance() {
         if (instance == null) {
             instance = new MessageValidator();
         }
@@ -11,6 +11,6 @@ public class MessageValidator {
     }
 
     public boolean validateMessage(String message) {
-        return message != null && message.trim().isEmpty();
+        return message != null && !message.contains("\n");
     }
 }
