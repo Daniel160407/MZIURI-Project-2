@@ -21,12 +21,12 @@
         <h2 class="centeredHeader">Send Message</h2>
         <form id="messageForm"><h3>Target User:</h3> <input type="text" id="username" name="username" required>
             <h3>Message:</h3> <input type="text" id="message" name="message" required> <br><br>
-            <button type="submit" onclick="register()">Send</button>
+            <button type="submit">Send</button>
         </form>
     </div>
     <div id="registerFormTab" class="tab-pane fade">
         <h2 class="centeredHeader">Register User</h2>
-        <form id="registerForm"><h3>Username:</h3> <input type="text" id="registerUsername" name="registerUsername"
+        <form id="registerForm" method="post"><h3>Username:</h3> <input type="text" id="registerUsername" name="registerUsername"
                                                           required>
             <h3>Password:</h3> <input type="password" id="registerPassword" name="registerPassword" required> <br><br>
             <button type="submit">Register</button>

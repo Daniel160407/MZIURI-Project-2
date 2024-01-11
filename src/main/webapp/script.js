@@ -1,21 +1,35 @@
-// Request-ის გაგზავნა
-async function register() {
-    var url = webserverName + servletUrl + '?param1=param1Value' + '&param2=param2Value';
-    var method = "POST"
-    var response = await fetch(url, {method: "POST"});
+$(document).ready(function () {
+    $("#registerForm").submit(function (event) {
+        event.preventDefault();
 
-    // Response body-ს მიღება
-    var body = await response.text();
+        $.ajax({
+            url: "/messenger/user",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data, textStatus, jqXHR) {
+                alert("You were successfully registered!");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("User with username you provided already exists! Error: " + jqXHR.status);
+            }
+        });
+    });
 
-    // HTML ელემენტის დამატება/შეცვლა
-    var div = document.getElementById("some-div-id");
-    div.innerHTML = '<h1>Hello World</h1>';
-}
+    $("#messageForm").submit(function (event) {
+        event.preventDefault();
+        $.post("/MessageServlet", $(this).serialize(), function (data) {
+            alert(data);
+        });
+    });
 
-
-
-
-
-
-
-
+    $("#username").change(function () {
+        $.get("/MessageServlet", $(this).serialize(), function (data) {
+            $("#messagesList").html("");
+            data.split("\n").forEach(function (message) {
+                if (message.trim() !== "") {
+                    $("#messagesList").append("<li>" + message + "</li>");
+                }
+            });
+        });
+    });
+});

@@ -17,7 +17,7 @@ public class JDBCController implements MySQLController {
 
         try {
             Statement statement = con.createStatement();
-            statement.execute("create schema if not exists Messenger");
+            statement.execute("create schema if not exists messenger");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -26,16 +26,16 @@ public class JDBCController implements MySQLController {
 
     @Override
     public void createTable() {
-        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/Messenger", "root", "17042007");
+        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/messenger", "root", "17042007");
 
         Connection con = mySQLConnector.getCon();
 
         try {
             Statement statement = con.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS`work`.`users` (\n" +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS`messenger`.`users` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `username` VARCHAR(45) NOT NULL,\n" +
-                    "  `new_tablecol1` VARCHAR(45) NOT NULL,\n" +
+                    "  `password` VARCHAR(45) NOT NULL,\n" +
                     "  PRIMARY KEY (`id`));\n");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class JDBCController implements MySQLController {
 
     @Override
     public void addUser(String username, String password) {
-        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/Messenger", "root", "17042007");
+        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/messenger", "root", "17042007");
 
         Connection con = mySQLConnector.getCon();
 
@@ -62,14 +62,14 @@ public class JDBCController implements MySQLController {
 
     @Override
     public List<User> getUsers() {
-        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/Messenger", "root", "17042007");
+        MySQLConnector mySQLConnector = new MySQLConnector("jdbc:mysql://localhost:3306/messenger", "root", "17042007");
 
         Connection con = mySQLConnector.getCon();
 
         List<User> users = new ArrayList<>();
         try {
             Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from users");
+            ResultSet resultSet = statement.executeQuery("select username,password from users");
 
             while (resultSet.next()) {
                 users.add(new User(resultSet.getString(1), resultSet.getString(2)));

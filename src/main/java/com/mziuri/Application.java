@@ -18,7 +18,7 @@ public class Application {
         Tomcat tomcat = new Tomcat();
 
         tomcat.enableNaming();
-        tomcat.setPort(8989);
+        tomcat.setPort(8080);
         tomcat.getConnector();
 
         String ctxPath = "/messenger";
@@ -34,6 +34,7 @@ public class Application {
 
         JDBCController jdbcController = new JDBCController();
         jdbcController.createSchema();
+        jdbcController.createTable();
 
         tomcat.start();
         tomcat.getServer().await();

@@ -19,21 +19,26 @@ public class UserServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = request.getParameter("registerUsername");
+        String password = request.getParameter("registerPassword");
 
         List<User> users = jdbcController.getUsers();
         boolean passed = true;
 
         for (User user : users) {
-            if (user.getUsername().equals(username)) {
+            System.out.println(user);
+            if (user == null || user.getUsername().equals(username)) {
                 passed = false;
                 break;
             }
         }
-
+        System.out.println("got");
+        System.out.println(username);
+        System.out.println(password);
         if (passed) {
             jdbcController.addUser(username, password);
+            System.out.println("passed");
+            response.setStatus(200);
         } else {
             response.setStatus(403);
         }
