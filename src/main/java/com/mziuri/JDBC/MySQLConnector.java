@@ -11,7 +11,7 @@ public class MySQLConnector {
         try {
             con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 

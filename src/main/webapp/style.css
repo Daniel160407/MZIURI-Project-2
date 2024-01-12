@@ -11,7 +11,8 @@ body {
     padding: 20px;
     border-radius: 5px;
 }
-.centeredHeader{
+
+.centeredHeader {
     text-align: center;
 }
 
@@ -70,6 +71,7 @@ body {
     cursor: pointer;
     width: 100%;
 }
+
 #inboxForm input[type="text"], #inboxForm input[type="password"] {
     width: 100%;
     padding: 12px 20px;
@@ -86,4 +88,26 @@ body {
 #sentMessagesTab ul {
     list-style-type: none;
     padding: 0;
+}
+
+#inbox {
+    display: none;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+#inbox h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#inbox p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #777;
 }

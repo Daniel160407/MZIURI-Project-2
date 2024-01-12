@@ -9,7 +9,6 @@ import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
-import java.sql.SQLException;
 
 public class Application {
 
