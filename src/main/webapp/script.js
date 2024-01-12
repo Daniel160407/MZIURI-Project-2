@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $("#registerForm").submit(function (event) {
         event.preventDefault();
-
         $.ajax({
             url: "/messenger/user",
             type: "POST",
@@ -15,6 +14,9 @@ $(document).ready(function () {
                 this.reset();
             }
         });
+
+        $("#registerUsername").val("");
+        $("#registerPassword").val("");
     });
 
     $("#messageForm").submit(function (event) {
@@ -28,10 +30,13 @@ $(document).ready(function () {
                 this.reset();
             },
             error: function (jqXHR) {
-                alert("Your message is not valid! Error: " + jqXHR.status);
+                alert("User with username you provided, doesn`t exists or your message is not valid! Error: " + jqXHR.status);
                 this.reset();
             }
-        })
+        });
+
+        $("#username").val("");
+        $("#message").val("");
     });
 
     $("#inboxForm").submit(function (event) {
@@ -41,23 +46,29 @@ $(document).ready(function () {
             type: "GET",
             data: $(this).serialize(),
             success: function (data) {
-                const messages = data.map(function (obj) {
-                    return obj.message;
-                });
+                if (data.length > 0) {
+                    const messages = data.map(function (obj) {
+                        return obj.message;
+                    });
 
-                let formattedData = messages.join("<br/>");
-                
-                document.getElementById("inbox").style.display = "block";
-                document.getElementById("messages").innerHTML = formattedData;
+                    let formattedData = messages.join("<br/>");
 
-                alert("Your messages were successfully loaded!");
+                    document.getElementById("inbox").style.display = "block";
+                    document.getElementById("messages").innerHTML = formattedData;
 
+                    alert("Your messages were successfully loaded!");
+                } else {
+                    alert("You don`t have any messages received!")
+                }
                 this.reset();
             },
             error: function (jqXRH) {
-                alert("Username or password you provided isn`t correct! Error: "+jqXRH.status);
+                alert("Username or password you provided isn`t correct! Error: " + jqXRH.status);
                 this.reset();
             }
         })
+
+        $("#inboxUsername").val("");
+        $("#inboxPassword").val("");
     });
 });

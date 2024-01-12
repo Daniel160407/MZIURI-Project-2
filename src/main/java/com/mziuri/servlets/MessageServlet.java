@@ -28,22 +28,18 @@ public class MessageServlet extends HttpServlet {
         boolean isFound = false;
 
         for (User user : users) {
-            System.out.println(user);
-            System.out.println(username);
-            System.out.println();
             if (user.username().equals(username) && user.password().equals(password)) {
                 isFound = true;
                 break;
             }
         }
-        System.out.println(isFound);
         if (isFound) {
+
             List<Message> messages = mySQLController.getMessages(username);
 
             PrintWriter printWriter = response.getWriter();
             try {
                 printWriter.println(Message.messageListToJson(messages));
-                System.out.println(Message.messageListToJson(messages));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
